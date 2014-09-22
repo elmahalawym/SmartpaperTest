@@ -1,0 +1,318 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="SmartNewsModel" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Category">
+        <Key>
+          <PropertyRef Name="CategoryID" />
+        </Key>
+        <Property Name="CategoryID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="CategoryName" Type="Edm.String" />
+        <NavigationProperty Name="Clusters" Relationship="SmartNewsModel.Category_Clusters_Cluster_Categories" ToRole="Cluster_Categories" FromRole="Category_Clusters" />
+        <NavigationProperty Name="Items" Relationship="SmartNewsModel.Category_Items_Item_Categories" ToRole="Item_Categories" FromRole="Category_Items" />
+      </EntityType>
+      <EntityType Name="Cluster">
+        <Key>
+          <PropertyRef Name="ClusterID" />
+        </Key>
+        <Property Name="ClusterID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="CategoryID" Type="Edm.Int64" />
+        <NavigationProperty Name="Categories" Relationship="SmartNewsModel.Category_Clusters_Cluster_Categories" ToRole="Category_Clusters" FromRole="Cluster_Categories" />
+        <NavigationProperty Name="Items" Relationship="SmartNewsModel.Cluster_Items_Item_Clusters" ToRole="Item_Clusters" FromRole="Cluster_Items" />
+        <NavigationProperty Name="ClusterCenroid" Relationship="SmartNewsModel.Cluster_ClusterCenroid_ClusterCentroid_Cluster" ToRole="ClusterCentroid_Cluster" FromRole="Cluster_ClusterCenroid" />
+      </EntityType>
+      <EntityType Name="Filter">
+        <Key>
+          <PropertyRef Name="FilterID" />
+        </Key>
+        <Property Name="FilterID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Content" Type="Edm.String" />
+        <Property Name="UserID" Type="Edm.Int64" Nullable="false" />
+        <NavigationProperty Name="Users" Relationship="SmartNewsModel.Filter_Users_User_Filters" ToRole="User_Filters" FromRole="Filter_Users" />
+      </EntityType>
+      <EntityType Name="IgnoredItem">
+        <Key>
+          <PropertyRef Name="ItemID" />
+          <PropertyRef Name="UserID" />
+        </Key>
+        <Property Name="UserID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ItemID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="IsCluster" Type="Edm.Boolean" />
+        <NavigationProperty Name="Users" Relationship="SmartNewsModel.IgnoredItem_Users_User_IgnoredItems" ToRole="User_IgnoredItems" FromRole="IgnoredItem_Users" />
+      </EntityType>
+      <EntityType Name="Item">
+        <Key>
+          <PropertyRef Name="ItemID" />
+        </Key>
+        <Property Name="ItemID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="URL" Type="Edm.String" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="DateOfItem" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ImageUrl" Type="Edm.String" />
+        <Property Name="IDNewsSources" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ClusterID" Type="Edm.Int32" />
+        <Property Name="CategoryID" Type="Edm.Int64" />
+        <Property Name="ReadCount" Type="Edm.Int32" />
+        <NavigationProperty Name="Categories" Relationship="SmartNewsModel.Category_Items_Item_Categories" ToRole="Category_Items" FromRole="Item_Categories" />
+        <NavigationProperty Name="Clusters" Relationship="SmartNewsModel.Cluster_Items_Item_Clusters" ToRole="Cluster_Items" FromRole="Item_Clusters" />
+        <NavigationProperty Name="Preferences" Relationship="SmartNewsModel.Item_Preferences_Preference_Items" ToRole="Preference_Items" FromRole="Item_Preferences" />
+        <NavigationProperty Name="NewsSources" Relationship="SmartNewsModel.Item_NewsSources_NewsSource_Items" ToRole="NewsSource_Items" FromRole="Item_NewsSources" />
+        <NavigationProperty Name="ItemContent" Relationship="SmartNewsModel.Item_ItemContent_ItemContent_Item" ToRole="ItemContent_Item" FromRole="Item_ItemContent" />
+      </EntityType>
+      <EntityType Name="NewsSource">
+        <Key>
+          <PropertyRef Name="NewsSourcesID" />
+        </Key>
+        <Property Name="NewsSourcesID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="SourceName" Type="Edm.String" />
+        <Property Name="URL" Type="Edm.String" />
+        <Property Name="Language" Type="Edm.String" />
+        <Property Name="Type" Type="Edm.String" />
+        <NavigationProperty Name="Items" Relationship="SmartNewsModel.Item_NewsSources_NewsSource_Items" ToRole="Item_NewsSources" FromRole="NewsSource_Items" />
+        <NavigationProperty Name="Users" Relationship="SmartNewsModel.NewsSource_Users_User_NewsSources" ToRole="User_NewsSources" FromRole="NewsSource_Users" />
+      </EntityType>
+      <EntityType Name="Preference">
+        <Key>
+          <PropertyRef Name="PreferenceID" />
+        </Key>
+        <Property Name="PreferenceID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ItemID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="UserID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Rating" Type="Edm.Double" Nullable="false" />
+        <Property Name="Date" Type="Edm.DateTime" />
+        <NavigationProperty Name="Items" Relationship="SmartNewsModel.Item_Preferences_Preference_Items" ToRole="Item_Preferences" FromRole="Preference_Items" />
+        <NavigationProperty Name="Users" Relationship="SmartNewsModel.Preference_Users_User_Preferences" ToRole="User_Preferences" FromRole="Preference_Users" />
+      </EntityType>
+      <EntityType Name="ToReadList">
+        <Key>
+          <PropertyRef Name="ItemID" />
+          <PropertyRef Name="UserID" />
+        </Key>
+        <Property Name="UserID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ItemID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Date" Type="Edm.DateTime" />
+        <NavigationProperty Name="Users" Relationship="SmartNewsModel.ToReadList_Users_User_ToReadList" ToRole="User_ToReadList" FromRole="ToReadList_Users" />
+      </EntityType>
+      <EntityType Name="User">
+        <Key>
+          <PropertyRef Name="UserID" />
+        </Key>
+        <Property Name="UserID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" />
+        <Property Name="LastName" Type="Edm.String" />
+        <Property Name="Email" Type="Edm.String" />
+        <Property Name="UserName" Type="Edm.String" />
+        <Property Name="Password" Type="Edm.String" />
+        <Property Name="ssd" Type="Edm.String" />
+        <Property Name="FacebookProfile" Type="Edm.String" />
+        <Property Name="UserPic" Type="Edm.String" />
+        <Property Name="LongTermProfile" Type="Edm.String" />
+        <Property Name="ProfileLastUpdate" Type="Edm.DateTime" />
+        <Property Name="ShortTermProfile" Type="Edm.String" />
+        <NavigationProperty Name="Filters" Relationship="SmartNewsModel.Filter_Users_User_Filters" ToRole="Filter_Users" FromRole="User_Filters" />
+        <NavigationProperty Name="IgnoredItems" Relationship="SmartNewsModel.IgnoredItem_Users_User_IgnoredItems" ToRole="IgnoredItem_Users" FromRole="User_IgnoredItems" />
+        <NavigationProperty Name="Preferences" Relationship="SmartNewsModel.Preference_Users_User_Preferences" ToRole="Preference_Users" FromRole="User_Preferences" />
+        <NavigationProperty Name="ToReadList" Relationship="SmartNewsModel.ToReadList_Users_User_ToReadList" ToRole="ToReadList_Users" FromRole="User_ToReadList" />
+        <NavigationProperty Name="NewsSources" Relationship="SmartNewsModel.NewsSource_Users_User_NewsSources" ToRole="NewsSource_Users" FromRole="User_NewsSources" />
+      </EntityType>
+      <EntityType Name="ClusterCentroid">
+        <Key>
+          <PropertyRef Name="ClusterID" />
+        </Key>
+        <Property Name="ClusterID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Centroid" Type="Edm.String" />
+        <NavigationProperty Name="Cluster" Relationship="SmartNewsModel.Cluster_ClusterCenroid_ClusterCentroid_Cluster" ToRole="Cluster_ClusterCenroid" FromRole="ClusterCentroid_Cluster" />
+      </EntityType>
+      <EntityType Name="ItemContent">
+        <Key>
+          <PropertyRef Name="ItemID" />
+        </Key>
+        <Property Name="ItemID" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Content" Type="Edm.String" />
+        <NavigationProperty Name="Item" Relationship="SmartNewsModel.Item_ItemContent_ItemContent_Item" ToRole="Item_ItemContent" FromRole="ItemContent_Item" />
+      </EntityType>
+      <Association Name="Category_Clusters_Cluster_Categories">
+        <End Type="SmartNewsModel.Cluster" Role="Cluster_Categories" Multiplicity="*" />
+        <End Type="SmartNewsModel.Category" Role="Category_Clusters" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Category_Items_Item_Categories">
+        <End Type="SmartNewsModel.Item" Role="Item_Categories" Multiplicity="*" />
+        <End Type="SmartNewsModel.Category" Role="Category_Items" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Cluster_Items_Item_Clusters">
+        <End Type="SmartNewsModel.Item" Role="Item_Clusters" Multiplicity="*" />
+        <End Type="SmartNewsModel.Cluster" Role="Cluster_Items" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Cluster_ClusterCenroid_ClusterCentroid_Cluster">
+        <End Type="SmartNewsModel.ClusterCentroid" Role="ClusterCentroid_Cluster" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.Cluster" Role="Cluster_ClusterCenroid" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Filter_Users_User_Filters">
+        <End Type="SmartNewsModel.User" Role="User_Filters" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.Filter" Role="Filter_Users" Multiplicity="*" />
+      </Association>
+      <Association Name="IgnoredItem_Users_User_IgnoredItems">
+        <End Type="SmartNewsModel.User" Role="User_IgnoredItems" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.IgnoredItem" Role="IgnoredItem_Users" Multiplicity="*" />
+      </Association>
+      <Association Name="Item_Preferences_Preference_Items">
+        <End Type="SmartNewsModel.Preference" Role="Preference_Items" Multiplicity="*" />
+        <End Type="SmartNewsModel.Item" Role="Item_Preferences" Multiplicity="0..1" />
+      </Association>
+      <Association Name="Item_NewsSources_NewsSource_Items">
+        <End Type="SmartNewsModel.NewsSource" Role="NewsSource_Items" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.Item" Role="Item_NewsSources" Multiplicity="*" />
+      </Association>
+      <Association Name="Item_ItemContent_ItemContent_Item">
+        <End Type="SmartNewsModel.ItemContent" Role="ItemContent_Item" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.Item" Role="Item_ItemContent" Multiplicity="0..1" />
+      </Association>
+      <Association Name="NewsSource_Users_User_NewsSources">
+        <End Type="SmartNewsModel.User" Role="User_NewsSources" Multiplicity="*" />
+        <End Type="SmartNewsModel.NewsSource" Role="NewsSource_Users" Multiplicity="*" />
+      </Association>
+      <Association Name="Preference_Users_User_Preferences">
+        <End Type="SmartNewsModel.User" Role="User_Preferences" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.Preference" Role="Preference_Users" Multiplicity="*" />
+      </Association>
+      <Association Name="ToReadList_Users_User_ToReadList">
+        <End Type="SmartNewsModel.User" Role="User_ToReadList" Multiplicity="0..1" />
+        <End Type="SmartNewsModel.ToReadList" Role="ToReadList_Users" Multiplicity="*" />
+      </Association>
+    </Schema>
+    <Schema Namespace="SNWS" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="SNEntities" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Categories" EntityType="SmartNewsModel.Category" />
+        <EntitySet Name="Clusters" EntityType="SmartNewsModel.Cluster" />
+        <EntitySet Name="Filters" EntityType="SmartNewsModel.Filter" />
+        <EntitySet Name="IgnoredItems" EntityType="SmartNewsModel.IgnoredItem" />
+        <EntitySet Name="Items" EntityType="SmartNewsModel.Item" />
+        <EntitySet Name="NewsSources" EntityType="SmartNewsModel.NewsSource" />
+        <EntitySet Name="Preferences" EntityType="SmartNewsModel.Preference" />
+        <EntitySet Name="ToReadLists" EntityType="SmartNewsModel.ToReadList" />
+        <EntitySet Name="Users" EntityType="SmartNewsModel.User" />
+        <EntitySet Name="ClusterCentroids" EntityType="SmartNewsModel.ClusterCentroid" />
+        <EntitySet Name="ItemContents" EntityType="SmartNewsModel.ItemContent" />
+        <FunctionImport Name="GetLatestNews" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetLatestNewsFromID" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="startId" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetCustomNews" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="categoryID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="sourceID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetCustomNewsFromID" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="categoryID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="sourceID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="startId" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetNewsOfCustomFilter" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="filter" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetItemContent" ReturnType="Edm.String" m:HttpMethod="GET">
+          <Parameter Name="itemID" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="SearchNews" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="query" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetLatestNewsStories" ReturnType="Collection(SmartNewsModel.Cluster)" EntitySet="Clusters" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetLatestStoriesBeforeTime" ReturnType="Collection(SmartNewsModel.Cluster)" EntitySet="Clusters" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="availableIDs" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetNewsStoriesByCategory" ReturnType="Collection(SmartNewsModel.Cluster)" EntitySet="Clusters" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="categoryID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetNewsStoriesByCategoryBeforeTime" ReturnType="Collection(SmartNewsModel.Cluster)" EntitySet="Clusters" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="categoryID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="availableIDs" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetNewsByCategory" ReturnType="Collection(SmartNewsModel.Item)" EntitySet="Items" m:HttpMethod="GET">
+          <Parameter Name="categoryID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="ResetPassword" ReturnType="Edm.Boolean" m:HttpMethod="GET">
+          <Parameter Name="email" Type="Edm.String" />
+          <Parameter Name="newPass" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="AddPreference" ReturnType="Edm.String" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="itemID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="type" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetUserFilters" ReturnType="Collection(SmartNewsModel.Filter)" EntitySet="Filters" m:HttpMethod="GET">
+          <Parameter Name="userID" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="IndexDocuments" ReturnType="Edm.String" m:HttpMethod="GET">
+          <Parameter Name="noOfItems" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="IndexDocumentsAutomatically" ReturnType="Edm.String" m:HttpMethod="GET" />
+        <AssociationSet Name="FK_Clusters_0" Association="SmartNewsModel.Category_Clusters_Cluster_Categories">
+          <End Role="Category_Clusters" EntitySet="Categories" />
+          <End Role="Cluster_Categories" EntitySet="Clusters" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Items_Categories" Association="SmartNewsModel.Category_Items_Item_Categories">
+          <End Role="Category_Items" EntitySet="Categories" />
+          <End Role="Item_Categories" EntitySet="Items" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ClusterID" Association="SmartNewsModel.Cluster_Items_Item_Clusters">
+          <End Role="Cluster_Items" EntitySet="Clusters" />
+          <End Role="Item_Clusters" EntitySet="Items" />
+        </AssociationSet>
+        <AssociationSet Name="ClusterCenroidCluster" Association="SmartNewsModel.Cluster_ClusterCenroid_ClusterCentroid_Cluster">
+          <End Role="Cluster_ClusterCenroid" EntitySet="Clusters" />
+          <End Role="ClusterCentroid_Cluster" EntitySet="ClusterCentroids" />
+        </AssociationSet>
+        <AssociationSet Name="Filter_FK" Association="SmartNewsModel.Filter_Users_User_Filters">
+          <End Role="Filter_Users" EntitySet="Filters" />
+          <End Role="User_Filters" EntitySet="Users" />
+        </AssociationSet>
+        <AssociationSet Name="FK_IgnoreUser" Association="SmartNewsModel.IgnoredItem_Users_User_IgnoredItems">
+          <End Role="IgnoredItem_Users" EntitySet="IgnoredItems" />
+          <End Role="User_IgnoredItems" EntitySet="Users" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Item" Association="SmartNewsModel.Item_Preferences_Preference_Items">
+          <End Role="Item_Preferences" EntitySet="Items" />
+          <End Role="Preference_Items" EntitySet="Preferences" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Items_NewsSources" Association="SmartNewsModel.Item_NewsSources_NewsSource_Items">
+          <End Role="Item_NewsSources" EntitySet="Items" />
+          <End Role="NewsSource_Items" EntitySet="NewsSources" />
+        </AssociationSet>
+        <AssociationSet Name="ItemContentItem" Association="SmartNewsModel.Item_ItemContent_ItemContent_Item">
+          <End Role="Item_ItemContent" EntitySet="Items" />
+          <End Role="ItemContent_Item" EntitySet="ItemContents" />
+        </AssociationSet>
+        <AssociationSet Name="UserFavSources" Association="SmartNewsModel.NewsSource_Users_User_NewsSources">
+          <End Role="NewsSource_Users" EntitySet="NewsSources" />
+          <End Role="User_NewsSources" EntitySet="Users" />
+        </AssociationSet>
+        <AssociationSet Name="FK_User" Association="SmartNewsModel.Preference_Users_User_Preferences">
+          <End Role="Preference_Users" EntitySet="Preferences" />
+          <End Role="User_Preferences" EntitySet="Users" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ToReadList_Users" Association="SmartNewsModel.ToReadList_Users_User_ToReadList">
+          <End Role="ToReadList_Users" EntitySet="ToReadLists" />
+          <End Role="User_ToReadList" EntitySet="Users" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

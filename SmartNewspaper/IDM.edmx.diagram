@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cae5d5b5fc314adca3cbc759b86c584d" Name="Diagram1">
+        <EntityTypeShape EntityType="iModel.Category" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.Cluster" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.Filter" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.IgnoredItem" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.Item" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.ItemsData" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.NewsSource" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.Preference" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.ToReadList" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iModel.User" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="iModel.FK_Clusters_0" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_Items_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_Items_Clusters0" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.Filter_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_IgnoredItems_0" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_Items_NewsSources" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_User" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.FK_ToReadList_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="iModel.UserFavSources" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="iModel.ItemContent" Width="1.5" PointX="7.625" PointY="4.375" />
+        <AssociationConnector Association="iModel.ItemContentItem" />
+        <EntityTypeShape EntityType="iModel.ClusterCentroid" Width="1.5" PointX="7.5" PointY="11.25" />
+        <AssociationConnector Association="iModel.ClusterCentroidCluster" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

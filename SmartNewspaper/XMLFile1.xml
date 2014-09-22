@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xml:base="http://smartnewsws.cloudapp.net/SNDataService.svc/" xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+  <id>http://smartnewsws.cloudapp.net/SNDataService.svc/Users</id>
+  <title type="text">Users</title>
+  <updated>2014-04-09T20:09:41Z</updated>
+  <link rel="self" title="Users" href="Users" />
+  <entry>
+    <id>http://smartnewsws.cloudapp.net/SNDataService.svc/Users(1L)</id>
+    <category term="SmartNewsModel.User" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="User" href="Users(1L)" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Preferences" type="application/atom+xml;type=feed" title="Preferences" href="Users(1L)/Preferences" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ToReadLists" type="application/atom+xml;type=feed" title="ToReadLists" href="Users(1L)/ToReadLists" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/NewsSources" type="application/atom+xml;type=feed" title="NewsSources" href="Users(1L)/NewsSources" />
+    <title />
+    <updated>2014-04-09T20:09:41Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:UserID m:type="Edm.Int64">1</d:UserID>
+        <d:FirstName>Morsi</d:FirstName>
+        <d:LastName>mohamed</d:LastName>
+        <d:Email>asdlfjsdkfj@faskjfhsd.com</d:Email>
+        <d:UserName>abdalla</d:UserName>
+        <d:Password>123</d:Password>
+        <d:ssd m:null="true" />
+        <d:UserProfile m:null="true" />
+        <d:UserPic m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://smartnewsws.cloudapp.net/SNDataService.svc/Users(2L)</id>
+    <category term="SmartNewsModel.User" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="User" href="Users(2L)" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Preferences" type="application/atom+xml;type=feed" title="Preferences" href="Users(2L)/Preferences" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ToReadLists" type="application/atom+xml;type=feed" title="ToReadLists" href="Users(2L)/ToReadLists" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/NewsSources" type="application/atom+xml;type=feed" title="NewsSources" href="Users(2L)/NewsSources" />
+    <title />
+    <updated>2014-04-09T20:09:41Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:UserID m:type="Edm.Int64">2</d:UserID>
+        <d:FirstName xml:space="preserve">Ahmed	</d:FirstName>
+        <d:LastName>Kamal</d:LastName>
+        <d:Email>a.abdelfatah@live.com</d:Email>
+        <d:UserName>akamal8</d:UserName>
+        <d:Password>1222331</d:Password>
+        <d:ssd>12332</d:ssd>
+        <d:UserProfile>dsadasdasd</d:UserProfile>
+        <d:UserPic m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://smartnewsws.cloudapp.net/SNDataService.svc/Users(3L)</id>
+    <category term="SmartNewsModel.User" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="User" href="Users(3L)" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Preferences" type="application/atom+xml;type=feed" title="Preferences" href="Users(3L)/Preferences" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ToReadLists" type="application/atom+xml;type=feed" title="ToReadLists" href="Users(3L)/ToReadLists" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/NewsSources" type="application/atom+xml;type=feed" title="NewsSources" href="Users(3L)/NewsSources" />
+    <title />
+    <updated>2014-04-09T20:09:41Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:UserID m:type="Edm.Int64">3</d:UserID>
+        <d:FirstName>Amany</d:FirstName>
+        <d:LastName>Omar</d:LastName>
+        <d:Email>amany3232@yahoo.com</d:Email>
+        <d:UserName>amanyom</d:UserName>
+        <d:Password>123321</d:Password>
+        <d:ssd m:null="true" />
+        <d:UserProfile m:null="true" />
+        <d:UserPic m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>http://smartnewsws.cloudapp.net/SNDataService.svc/Users(4L)</id>
+    <category term="SmartNewsModel.User" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
+    <link rel="edit" title="User" href="Users(4L)" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Preferences" type="application/atom+xml;type=feed" title="Preferences" href="Users(4L)/Preferences" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/ToReadLists" type="application/atom+xml;type=feed" title="ToReadLists" href="Users(4L)/ToReadLists" />
+    <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/NewsSources" type="application/atom+xml;type=feed" title="NewsSources" href="Users(4L)/NewsSources" />
+    <title />
+    <updated>2014-04-09T20:09:41Z</updated>
+    <author>
+      <name />
+    </author>
+    <content type="application/xml">
+      <m:properties>
+        <d:UserID m:type="Edm.Int64">4</d:UserID>
+        <d:FirstName>Saad</d:FirstName>
+        <d:LastName>Samir</d:LastName>
+        <d:Email>samiir@yahoo.com</d:Email>
+        <d:UserName>samirr</d:UserName>
+        <d:Password>123321</d:Password>
+        <d:ssd m:null="true" />
+        <d:UserProfile m:null="true" />
+        <d:UserPic m:null="true" />
+      </m:properties>
+    </content>
+  </entry>
+</feed>

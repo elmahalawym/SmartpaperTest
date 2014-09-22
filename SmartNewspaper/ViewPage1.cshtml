@@ -1,0 +1,199 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div id="header">
+
+        <div id="Panel_UserLoggedIn">
+            <div id="loggedIn">
+                <div id="userPicture"></div>
+                <div id="userControls">
+                    <table style="width: 100%" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold">
+                                    <a class="usernameText">UserName</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a>Settings</a></td>
+                                <td><a href="Users/Logout.aspx">Logout</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="Panel_UserNotLoggedIn">
+            <div id="login">
+                <a class="link_login_register">Login / Register</a>
+            </div>
+        </div>
+
+        <div id="logo">
+            <img src="images/logo.png" alt="S-paper" />
+        </div>
+
+        <div id="search">
+            <input class="search" />
+            <div id="resultframe">
+            </div>
+        </div>
+
+    </div>
+
+    <div id="wrapper">
+
+        <div id="leftStream">
+            <div id="articlePreview">
+                <div id="articleButton"><img src="images/articleButton.gif" /></div>
+                <div id="articlePreviewTitle"></div>
+                <div id="articlePreviewContent"></div>
+            </div>
+
+            <div id="leftStreamContainer">
+
+                <div id="UpdatePanel_leftStream_updateprogress">
+                    <div class="loading"></div>
+                </div>
+
+                <div id="UpdatePanel_leftStream">
+                    <div id="ListView_leftStream">
+                        @*Template that repeats*@
+                        <div class="articleWrapper">
+                            <table>
+                                <tbody>
+                                    <tr class="articleHeader">
+                                        <td>
+                                            <span class="articleDate"></span>
+                                        </td>
+                                        <td>
+                                            <ul class="articleSources">
+                                                <li class="articleSrc">
+                                                    <img />
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="articleFrame">
+                                                <div class="article">
+                                                    <div class="articleOptions">
+                                                        <a class="optionShare"><img src="images/share.png" /></a>
+                                                        <img src="images/later.png" class="optionLater" />
+                                                        <img src="images/close.png" class="optionClose" />
+                                                    </div>
+                                                    <div class="articleTitle">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="rightStream">
+            <div id="filters">
+                <div id="plus">
+                    <span class="plus_addFilter">+</span>
+                    <div id="addFilterOverlayBG">
+                        <span id="xbutton_addFilter">
+                            <img src="images/x.png" />
+                        </span>
+                        <div id="addFilterOverlay">
+                            <span>كلمة البحث:</span>
+                            <input type="text" id="addFilterName" />
+                            <input type="button" value="إضافة" id="addFilterButton" />
+                        </div>
+                    </div>
+
+                </div>
+                <div id="filterElmntWrapper">
+                    <input type="button" class="filterElmnt selected" value="آخر الأخبار" />
+                    <input type="button" class="filterElmnt" value="عام" />
+                    <input type="button" class="filterElmnt" value="رياضة" />
+                    <input type="button" class="filterElmnt" value="علوم و تكنولوجيا" />
+                    <input type="button" class="filterElmnt" value="سياسة" />
+                    <div class="customfilterelmntcontainer">
+                        <span class="customFilterElmnt">فلتر مخصص</span>
+                        <span class="customFilterElmntDelete">x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="UpdateProgress_rightStream">
+                <div class="loading"></div>
+            </div>
+
+            <div id="UpdatePanel_rightStream">
+                <div id="ListView_rightStream">
+                    @*Template that repeats*@
+                    <div class="articleWrapper">
+                        <table>
+                            <tbody>
+                                <tr class="articleHeader">
+                                    <td>
+                                        <span class="articleDate"></span>
+                                    </td>
+                                    <td>
+                                        <ul class="articleSources">
+                                            <li class="articleSrc">
+                                                <img />
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="articleFrame">
+                                            <div class="article">
+                                                <div class="articleOptions">
+                                                    <a class="optionShare"><img src="images/share.png" /></a>
+                                                    <img src="images/later.png" class="optionLater" />
+                                                    <img src="images/close.png" class="optionClose" />
+                                                </div>
+                                                <div class="articleTitle">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sidebar">
+            <ul>
+                <li class="nav">الرئيسية<img class="navIcon" src="images/home_h.png" /></li>
+                <li class="nav">
+                    <span id="counter"></span>
+                    <input value="للقراءة لاحقاً" id="button_read_later" />
+                    <img class="navIcon" src="images/later_small_h.png" />
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
