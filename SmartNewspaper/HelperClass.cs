@@ -275,7 +275,7 @@ namespace SmartNewspaper
             //    return result;
             //
             //string queryString = string.Format("GetLatestNewsStories()?userID={0} && noOfItems={1} && $expand=Items", userID, noOfItems);
-            var query = storyFactory.GetLatestNewsStories(userID, noOfItems);
+            var query = storyFactory.GetTrendingNewsStories(userID, noOfItems);
             return query.ToList<SmartNewspaper.Cluster>();
         }
 
