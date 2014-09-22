@@ -1110,7 +1110,7 @@ namespace SmartNewspaper
             TimeSpan diff = DateTime.UtcNow - x;
             if (diff < new TimeSpan(0))
             {
-                return x.ToString();
+                return "حالاً";
             }
             if (diff.Days > DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))
             {
@@ -1199,7 +1199,7 @@ namespace SmartNewspaper
             }
             else
             {
-                return x.ToString();
+                return "حالاً";
             }
         }
     }
