@@ -386,6 +386,48 @@ namespace SmartNewspaper
             return query;
         }
 
+        public List<long> ExtractIDs(string ClusterIDs)
+        {
+
+            string[] ids = ClusterIDs.Split(',');
+            List<long> idsToReturn = new List<long>();
+            for (int i = 0; i < ids.Count(); i++)
+            {
+                idsToReturn.Add(long.Parse(ids[i]));
+            }
+            return idsToReturn.ToList();
+        }
+
+
+        [System.Web.Services.WebMethod()]
+
+        public IQueryable<Cluster> GetTrendingStoriesBeforeTime(long userID, int noOfItems, string availableIDs){
+
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
+
+            List<long> SentIDs = ExtractIDs(availableIDs);
+
+            var clusters = (from c in db.Clusters
+                            where (c.LastUpdate > decayTime && !SentIDs.Contains(c.ClusterID))
+                            select c).OrderByDescending(x => x.Items.Count()).Take(noOfItems);
+            return clusters;
+        
+        }
+
+        [System.Web.Services.WebMethod()]
+        public IQueryable<Cluster> GetTrendingStoriesByCategoryBeforeTime(long userID, int categoryID, int noOfItems, string availableIDs)
+        {
+
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
+            List<long> SentIDs = ExtractIDs(availableIDs);
+
+            var clusters = (from c in db.Clusters
+                            where (c.CategoryID == categoryID && c.LastUpdate > decayTime && !SentIDs.Contains(c.ClusterID))
+                            select c).OrderByDescending(x => x.Items.Count()).Take(noOfItems);
+            return clusters;
+
+        }
+
         [System.Web.Services.WebMethod()]
         public static string fetchNewsItem(string itemID)
         {
