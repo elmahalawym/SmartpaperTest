@@ -320,9 +320,9 @@
                                 </tr>
                                 <tr>
                                     <%--<td><a>Settings</a></td>--%>
-                                    <td><a href="Users/Logout.aspx" class="logout_label">خروج</a>
-                                        <span class="help">مساعدة ؟</span>
-                                        <asp:Label runat="server" ID="imagesToggle" ClientIDMode="Static" Text="" />
+                                    <td><a href="Users/Logout.aspx" class="userControlsLabels">خروج</a>
+                                        <span class="help userControlsLabels">مساعدة ؟</span>
+                                        <asp:Label runat="server" ID="imagesToggle" CssClass="userControlsLabels" ClientIDMode="Static" Text="" />
                                     </td>
                                 </tr>
                             </tbody>
