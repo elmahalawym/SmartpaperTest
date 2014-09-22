@@ -12,6 +12,7 @@ using System.Web.Services;
 using SmartNewspaper.FeatureFactory;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using SmartNewspaper.FeatureFactory;
 
 namespace SmartNewspaper
 {
@@ -463,6 +464,63 @@ namespace SmartNewspaper
             }
             return "success";
         }
+
+        [System.Web.Services.WebMethod()]
+        public static string getMoreLatestStories(string availableIDs)
+        {
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
+
+            List<long> SentIDs = ExtractIDs(availableIDs);
+
+            var clusters = (from c in db.Clusters
+                            where (c.LastUpdate > decayTime && !SentIDs.Contains(c.ClusterID))
+                            select c).OrderByDescending(x => x.Items.Count()).Take(10);
+
+            List<object> lst = new List<object>();
+
+            foreach (var cluster in clusters)
+            {
+                List<string> IDs_list = new List<string>();
+                foreach (var i in cluster.Items)
+                {
+                    IDs_list.Add(i.ItemID.ToString());
+                }
+
+                var firstitem = cluster.Items.First();
+                lst.Add(new
+                {
+                    nItems = cluster.Items.Count,
+                    clusterId = cluster.ClusterID,
+                    listOfIDs = string.Join(",", IDs_list),
+                    firstItem = new
+                    {
+                        Title = firstitem.Title,
+                        Image = firstitem.ImageUrl,
+                        ID = firstitem.ItemID,
+                        URL = firstitem.URL,
+                        IDNewsSources = firstitem.IDNewsSources,
+                        CalculatedTime = computeTimeFromDateTime(firstitem.DateOfItem)
+                    }
+                });
+            }
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
+
+        }
+
+
+        private static List<long> ExtractIDs(string ClusterIDs)
+        {
+
+            string[] ids = ClusterIDs.Split(',');
+            List<long> idsToReturn = new List<long>();
+            for (int i = 0; i < ids.Count(); i++)
+            {
+                idsToReturn.Add(long.Parse(ids[i]));
+            }
+            return idsToReturn.ToList();
+        }
+
         #endregion
 
         #region Categories Buttons

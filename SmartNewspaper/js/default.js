@@ -180,6 +180,37 @@ var loadHandlers = function () {
         $('#filterElmntWrapper').find('.selected').click();
     });
 
+    $('#button_loadMoreNews_Recommended').off('click').on('click', function () {
+        var listofClusterIDs = [];
+        $('#storiesStream').children().each(function () {
+            listofClusterIDs.push(($(this).attr('data-clusterid')));
+        });
+        var listofClusterIDsAsString = listofClusterIDs.join(',');
+        showUpdatePanel_rightStream_updateprogress();
+
+        jQuery.ajax({
+            url: 'Default.aspx/getMoreLatestStories',
+            type: "POST",
+            data: "{ availableIDs: '" + listofClusterIDsAsString + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var listOfStoriesAsString = result.d;
+                var listOfStoriesAsJSON = JSON.parse(result.d);
+                for (var i = 0; i < listOfStoriesAsJSON.length; i++) {
+                    var storyToBePushed = makeStory(listOfStoriesAsJSON[i]);
+                    $('#storiesStream').append(storyToBePushed);
+                    console.log('successfully pushed cluster with id = ' + (listOfStoriesAsJSON[i].clusterId));
+                }
+                hideUpdatePanel_rightStream_updateprogress();
+                loadHandlers();
+            },
+            error: function () {
+                alert(arguments[2]);
+            }
+        });
+    });
+
     $('#button_filter_All').off('click').on('click', function () {
         var resultLatestStories;
         jQuery.ajax({
@@ -1007,9 +1038,6 @@ var loadHandlers = function () {
         showUpdatePanel_rightStream_updateprogress();
     });
 
-    $('#button_loadMoreNews_Recommended').on('click', function () {
-        $('.articleTitle').tooltip('close');
-    });
 
     // setting up the tooltips
     //$('.articleTitle').tooltip({
