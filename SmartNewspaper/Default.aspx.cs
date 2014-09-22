@@ -12,7 +12,6 @@ using System.Web.Services;
 using SmartNewspaper.FeatureFactory;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using SmartNewspaper.FeatureFactory;
 
 namespace SmartNewspaper
 {
@@ -387,7 +386,7 @@ namespace SmartNewspaper
             return query;
         }
 
-        public List<long> ExtractIDs(string ClusterIDs)
+        public static List<long>  ExtractIDs(string ClusterIDs)
         {
 
             string[] ids = ClusterIDs.Split(',');
@@ -398,7 +397,6 @@ namespace SmartNewspaper
             }
             return idsToReturn.ToList();
         }
-
 
         [System.Web.Services.WebMethod()]
 
@@ -509,17 +507,6 @@ namespace SmartNewspaper
         }
 
 
-        private static List<long> ExtractIDs(string ClusterIDs)
-        {
-
-            string[] ids = ClusterIDs.Split(',');
-            List<long> idsToReturn = new List<long>();
-            for (int i = 0; i < ids.Count(); i++)
-            {
-                idsToReturn.Add(long.Parse(ids[i]));
-            }
-            return idsToReturn.ToList();
-        }
 
         #endregion
 
