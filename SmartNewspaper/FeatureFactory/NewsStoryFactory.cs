@@ -16,32 +16,7 @@ namespace SNWS
             de = new iEntities();
            
         }
-        //News Story is a custom created specifically for the website only.
-        public IQueryable<Cluster> GetLatestNewsStories(long userID , int noOfItems)
-        {
-            List<long> ignoredItems = new List<long>();
-            if (userID != -1)
-            {
-                ignoredItems = GetIgnoredStories(userID).ToList();
-                if (ignoredItems.Count == 0)
-                    ignoredItems = new List<long>();
-
-            }
-
-
-            
-
-            //Get the latest clusters in deNotLazypending on the category
-            var clusters = (from n in de.Clusters
-                            where !ignoredItems.Contains(n.ClusterID)
-                            orderby n.LastUpdate descending
-                            select n).Include("Items").Take(noOfItems);
-           
-
-            return clusters;
-
-        }
-
+       
         public IQueryable<Cluster> GetTrendingNewsStories(long userID, int noOfItems)
         {
 
