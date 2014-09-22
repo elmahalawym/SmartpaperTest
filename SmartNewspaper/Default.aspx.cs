@@ -468,7 +468,7 @@ namespace SmartNewspaper
         [System.Web.Services.WebMethod()]
         public static string PoliticsStories()
         {
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
@@ -510,7 +510,7 @@ namespace SmartNewspaper
         public static string SportsStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
@@ -551,7 +551,7 @@ namespace SmartNewspaper
         public static string TechStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
@@ -592,7 +592,7 @@ namespace SmartNewspaper
         public static string GeneralStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
