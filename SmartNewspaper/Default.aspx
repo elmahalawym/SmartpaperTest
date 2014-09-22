@@ -320,8 +320,8 @@
                                 </tr>
                                 <tr>
                                     <%--<td><a>Settings</a></td>--%>
-                                    <td><a href="Users/Logout.aspx" class="logout_label">Logout</a>
-                                        <span class="help">Help (?)</span>
+                                    <td><a href="Users/Logout.aspx" class="logout_label">خروج</a>
+                                        <span class="help">مساعدة ؟</span>
                                         <asp:Label runat="server" ID="imagesToggle" ClientIDMode="Static" Text="" />
                                     </td>
                                 </tr>
@@ -334,8 +334,8 @@
 
             <asp:Panel ID="Panel_UserNotLoggedIn" ClientIDMode="Static" runat="server" Visible="true">
                 <div id="login">
-                    <a class="link_login_register">Login / Register</a>
-                    <span class="help" style="float: left;">Help (?)</span>
+                    <a class="link_login_register">التسجيل - الدخول</a>
+                    <span class="help" style="float: left;">مساعدة ؟</span>
                 </div>
 
             </asp:Panel>

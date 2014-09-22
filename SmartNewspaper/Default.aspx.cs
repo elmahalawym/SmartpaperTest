@@ -81,13 +81,13 @@ namespace SmartNewspaper
                 {
                     Session["EnableImages"] = "false";
                 }
-                if (Session["EnableImages"] == "false")
+                if ((string)Session["EnableImages"] == "false")
                 {
-                    imagesToggle.Text = "Enable Images";
+                    imagesToggle.Text = "تفعيل الصور";
                 }
-                else if (Session["EnableImages"] == "true")
+                else if ((string)Session["EnableImages"] == "true")
                 {
-                    imagesToggle.Text = "Disable Images";
+                    imagesToggle.Text = "إخفاء الصور";
                 }
 
                 hfEnableImages.Value = Session["EnableImages"].ToString();
@@ -428,7 +428,7 @@ namespace SmartNewspaper
         [System.Web.Services.WebMethod()]
         public static string LatestStories()
         {
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(120);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
@@ -461,18 +461,18 @@ namespace SmartNewspaper
                     }
                 });
             }
-            var x = JsonConvert.SerializeObject(lst);
-            return x;
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
         }
 
         [System.Web.Services.WebMethod()]
         public static string PoliticsStories()
         {
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
-                                  where n.LastUpdate > decayTime && n.CategoryID == 
+                                  where n.LastUpdate > decayTime && n.CategoryID == 4
                                   select n).OrderByDescending(x => x.Items.Count()).Take(10);
 
 
@@ -502,19 +502,19 @@ namespace SmartNewspaper
                     }
                 });
             }
-            var x = JsonConvert.SerializeObject(lst);
-            return x;
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
         }
 
         [System.Web.Services.WebMethod()]
         public static string SportsStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
-                                  where n.LastUpdate > decayTime && n.CategoryID == 
+                                  where n.LastUpdate > decayTime && n.CategoryID == 2
                                   select n).OrderByDescending(x => x.Items.Count()).Take(10);
 
             List<object> lst = new List<object>();
@@ -543,19 +543,19 @@ namespace SmartNewspaper
                     }
                 });
             }
-            var x = JsonConvert.SerializeObject(lst);
-            return x;
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
         }
 
         [System.Web.Services.WebMethod()]
         public static string TechStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
-                                  where n.LastUpdate > decayTime && n.CategoryID == 
+                                  where n.LastUpdate > decayTime && n.CategoryID == 3
                                   select n).OrderByDescending(x => x.Items.Count()).Take(10);
 
             List<object> lst = new List<object>();
@@ -584,19 +584,19 @@ namespace SmartNewspaper
                     }
                 });
             }
-            var x = JsonConvert.SerializeObject(lst);
-            return x;
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
         }
 
         [System.Web.Services.WebMethod()]
         public static string GeneralStories()
         {
 
-            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3);
+            DateTime decayTime = DateTime.Today - TimeSpan.FromDays(3 * 30);
 
             //Get the latest clusters in deNotLazypending on the category
             var latestClusters = (from n in db.Clusters
-                                  where n.LastUpdate > decayTime && n.CategoryID == 
+                                  where n.LastUpdate > decayTime && n.CategoryID == 1
                                   select n).OrderByDescending(x => x.Items.Count()).Take(10);
 
             List<object> lst = new List<object>();
@@ -625,8 +625,8 @@ namespace SmartNewspaper
                     }
                 });
             }
-            var x = JsonConvert.SerializeObject(lst);
-            return x;
+            var res = JsonConvert.SerializeObject(lst);
+            return res;
         }
 
         //protected void button_filter_All_Click(object sender, EventArgs e)
