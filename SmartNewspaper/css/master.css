@@ -1586,17 +1586,10 @@ body.loading {
     }
 
 .help {
-    margin-left: 10px;
     color: inherit;
     text-decoration: inherit;
-    font-size: 85%;
-    font-family: 'Helvatice';
     cursor: pointer;
 }
-
-    .help:hover {
-        color: rgba(204,204,204,1);
-    }
 
 #helpSlideshow {
     width: 800px;
@@ -1659,10 +1652,20 @@ body.loading {
 }
 
 #imagesToggle {
-    margin-left: 10px;
+    margin-left: 1px;
     color: inherit;
     text-decoration: inherit;
-    font-size: 85%;
-    font-family: 'Helvatice';
     cursor: pointer;
 }
+
+.userControlsLabels {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'Droid Arabic Naskh';
+    font-size: 75%;
+    color: rgb(255,255,255);
+}
+
+    .userControlsLabels:hover {
+        color: rgba(204,204,204,1);
+    }
