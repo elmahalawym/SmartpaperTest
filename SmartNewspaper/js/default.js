@@ -176,6 +176,10 @@ function makeStory(jsonStory) {
 
 var loadHandlers = function () {
 
+    $('#button_reloadRightStream').off('click').on('click', function () {
+        $('#filterElmntWrapper').find('.selected').click();
+    });
+
     $('#button_filter_All').off('click').on('click', function () {
         var resultLatestStories;
         jQuery.ajax({
